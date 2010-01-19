@@ -1,0 +1,15 @@
+"And miles to go before I sleep."
+    -- Robert Frost
+
+Some tasks:
+* create EventManager that runs on a separate thread
+* make command events consumable
+* add flood control
+* tweak shell's command processing
+* add authentication
+* add public and private commands
+* add do and say commands
+* add poke command
+* add join, part, kick, and invite commands
+* add iterator and mapper framework
+* redesign memory

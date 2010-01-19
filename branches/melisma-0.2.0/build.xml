@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project default="bin-dist" name="melisma">
+	<description>
+		Ant build file for the ${ant.project.name} project
+	</description>
+	
+	<property file="${ant.project.name}.properties"/>
+
+	<fileset id="src.fileset" dir="." excludes="${dist.dir}/**,${bin.dir}/**"/>
+	
+	<target name="clean-bin" description="removes the build directory">
+		<delete dir="${bin.dir}"/>
+	</target>
+
+	<target name="clean-dist" description="removes the distribution directory">
+		<delete dir="${dist.dir}"/>
+	</target>
+	
+	<target name="clean" description="removes all rebuildable files"
+		depends="clean-bin,clean-dist"/> 
+	
+	<target name="bin" description="compiles the project">
+		<mkdir dir="${bin.dir}"/>
+		<depend srcdir="${src.dir}" destdir="${bin.dir}" closure="yes"/>
+		<javac srcdir="${src.dir}" destdir="${bin.dir}"/>
+	</target>	
+	
+	<target name="src-dist-tgz" description="creates a gzipped tarball source distribution">
+		<mkdir dir="${dist.dir}"/>
+		<tar destfile="${dist.dir}/${dist.name}-src.tar.gz" compression="gzip">
+			<tarfileset refid="src.fileset" prefix="${dist.name}"/>
+		</tar>
+	</target>
+
+	<target name="src-dist-tbz2" description="creates a bzip2-compressed tarball source distribution">
+		<mkdir dir="${dist.dir}"/>
+		<tar destfile="${dist.dir}/${dist.name}-src.tar.bz2" compression="bzip2">
+			<tarfileset refid="src.fileset" prefix="${dist.name}"/>
+		</tar>
+	</target>
+	
+	<target name="src-dist-zip" description="creates a zipped source distribution">	
+		<mkdir dir="${dist.dir}"/>
+		<zip destfile="${dist.dir}/${dist.name}-src.zip">
+			<zipfileset refid="src.fileset" prefix="${dist.name}"/>
+		</zip>
+	</target>
+
+	<target name="src-dist" description="creates all the source distribution bundles" depends="src-dist-tgz,src-dist-tbz2,src-dist-zip"/> 
+	
+	<target name="bin-dist" description="creates a binary distribution" depends="bin">
+		<mkdir dir="${dist.dir}"/>
+		<jar destfile="${dist.dir}/${dist.name}.jar">
+			<manifest>
+				<attribute name="Main-Class" value="${src.main}"/>
+			</manifest>
+			<fileset dir="${bin.dir}" includes="**/*.class"/>
+			<fileset dir="${res.dir}"/>
+		</jar>
+	</target>
+
+	<target name="dist" description="creates all distribution files" depends="src-dist,bin-dist"/>
+</project>
