@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<!--
+		Defines default values. They can be overridden for a specific network.
+	-->
+
+	<nick>albert</nick>
+	<username>al</username>
+	<realname>Albert E. Gator</realname>
+
+	<network>
+		<hostname>irc.freenode.net</hostname>
+		<!--<port>6667</port>-->
+		<!--<serverpass>secret</serverpass>-->
+		<nick>gator</nick>
+		<!--<pass>anothersecret</pass>-->
+		<username>a</username>
+		<realname>Al</realname>
+		<channels>
+			<channel>
+				<name>#ufpt</name>
+				<!--<key>reallybigsecret</key>-->
+			</channel>
+		</channels>
+	</network>
+	
+	<network>
+		<hostname>irc.foonetic.net</hostname>
+		<channels>
+			<channel>
+				<!--<name>#bots</name>-->
+			</channel>
+		</channels>
+	</network>
+</config>
