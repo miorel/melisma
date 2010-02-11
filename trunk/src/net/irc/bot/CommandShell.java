@@ -11,14 +11,11 @@
  * FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
  * details.
  */
-
 package net.irc.bot;
 
 import java.lang.reflect.InvocationTargetException;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
@@ -32,6 +29,9 @@ import net.irc.cmd.PrivmsgCommand;
 import util.LogManager;
 import util.ResourceLoader;
 import util.ds.StringNode;
+
+import com.googlecode.lawu.util.Iterators;
+import com.googlecode.lawu.util.iterators.UniversalIterator;
 
 public class CommandShell extends BrainModule {	
 	private Map<String,Command> commands = new HashMap<String,Command>();
@@ -95,8 +95,8 @@ public class CommandShell extends BrainModule {
 		node.setValue(trigger);
 	}
 	
-	public Iterator<Command> getCommands() {
-		return Collections.unmodifiableSet(commandSet).iterator();
+	public UniversalIterator<Command> getCommands() {
+		return Iterators.adapt(commandSet);
 	}
 	
 	public Command getCommandForAlias(String alias) {

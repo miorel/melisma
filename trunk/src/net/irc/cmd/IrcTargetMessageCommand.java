@@ -13,11 +13,10 @@
  */
 package net.irc.cmd;
 
-import java.util.Iterator;
-
 import net.irc.Entity;
 
 import com.googlecode.lawu.util.Iterators;
+import com.googlecode.lawu.util.iterators.UniversalIterator;
 
 public abstract class IrcTargetMessageCommand extends AbstractIrcCommand {
 	private final String target;
@@ -40,7 +39,7 @@ public abstract class IrcTargetMessageCommand extends AbstractIrcCommand {
 	}
 	
 	@Override
-	public Iterator<String> getArguments() {
+	public UniversalIterator<String> getArguments() {
 		return Iterators.iterator(getTarget(), getMessage());
 	}
 }

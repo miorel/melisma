@@ -14,6 +14,8 @@
 
 package net.irc.bot.cmd;
 
+import static com.googlecode.lawu.util.Iterators.iterator;
+
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +30,8 @@ import net.irc.cmd.PrivmsgCommand;
 import org.w3c.dom.Node;
 
 import util.Nodes;
-import util.Strings;
+
+import com.googlecode.lawu.util.Strings;
 
 public class Weather extends AsynchronousCommand {	
 	public Weather(CommandShell shell) {
@@ -80,7 +83,7 @@ public class Weather extends AsynchronousCommand {
 				if(reportList.isEmpty())
 					throw new IllegalStateException("expected weather information when observation epoch is not null");
 				StringBuilder sb = new StringBuilder();
-				sb.append("Weather Underground report for ").append(location.trim()).append(" - ").append(Strings.join(", ", reportList.iterator()));
+				sb.append("Weather Underground report for ").append(location.trim()).append(" - ").append(Strings.join(", ", iterator(reportList)));
 				client.send(new PrivmsgCommand(target, sb.toString()));	
 			}
 		}

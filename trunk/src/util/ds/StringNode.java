@@ -25,7 +25,8 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import util.Nodes;
-import util.Strings;
+
+import com.googlecode.lawu.util.Strings;
 
 public class StringNode {
 	private Map<String,StringNode> children = new HashMap<String,StringNode>();
@@ -93,7 +94,7 @@ public class StringNode {
 		out.print("<node>");
 		if(hasValue()) {
 			out.print("<value>");
-			out.print(Strings.escapeXml(getValue().toString()));
+			out.print(Strings.escapeXml(getValue()));
 			out.print("</value>");
 		}
 		for(Entry<String,StringNode> entry: getChildren().entrySet()) {

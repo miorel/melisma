@@ -11,7 +11,6 @@
  * FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
  * details.
  */
-
 package net.irc.bot;
 
 import java.io.FileNotFoundException;
@@ -20,8 +19,6 @@ import java.io.PrintStream;
 import java.lang.reflect.InvocationTargetException;
 import java.nio.channels.Selector;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
 
@@ -36,6 +33,9 @@ import util.LogManager;
 import util.ResourceLoader;
 import util.ds.StringNode;
 import util.thread.WorkerThread;
+
+import com.googlecode.lawu.util.Iterators;
+import com.googlecode.lawu.util.iterators.UniversalIterator;
 
 public class Brain {
 	private final ThreadGroup threadGroup;
@@ -103,8 +103,8 @@ public class Brain {
 	}
 	
 	protected void loadClients(String configFile) throws SAXException, IOException {
-		for(Iterator<IrcConfig> configs = IrcConfig.parse(ResourceLoader.getInstance().getXmlDocument(configFile, true, true)); configs.hasNext();)
-			ircThread.addClient(configs.next());
+		for(IrcConfig config: IrcConfig.parse(ResourceLoader.getInstance().getXmlDocument(configFile, true, true)))
+			ircThread.addClient(config);
 	}
 	
 	protected void loadListeners(String listenersFile) {
@@ -127,8 +127,8 @@ public class Brain {
 		}
 	}
 	
-	public Iterator<IrcClient> getClients() {
-		return Collections.unmodifiableCollection(clients).iterator();
+	public UniversalIterator<IrcClient> getClients() {
+		return Iterators.adapt(clients);
 	}
 	
 	public void start() {

@@ -11,11 +11,9 @@
  * FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
  * details.
  */
-
 package net.irc.cmd;
 
 import java.util.Arrays;
-import java.util.Iterator;
 
 import net.irc.Entity;
 import net.irc.IrcClient;
@@ -24,6 +22,7 @@ import net.irc.event.IrcEvent;
 import net.irc.event.IrcEventListener;
 
 import com.googlecode.lawu.util.Iterators;
+import com.googlecode.lawu.util.iterators.UniversalIterator;
 
 import event.EventListener;
 
@@ -40,7 +39,7 @@ public class UnknownCommand extends AbstractIrcCommand {
 	}
 
 	@Override
-	public Iterator<String> getArguments() {
+	public UniversalIterator<String> getArguments() {
 		return Iterators.iterator(param);
 	}
 

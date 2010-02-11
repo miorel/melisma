@@ -11,14 +11,12 @@
  * FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
  * details.
  */
-
 package net.irc.cmd;
-
-import java.util.Iterator;
 
 import net.irc.Entity;
 
 import com.googlecode.lawu.util.Iterators;
+import com.googlecode.lawu.util.iterators.UniversalIterator;
 
 public class PassCommand extends AbstractIrcCommand {
 	private final String password;
@@ -38,7 +36,7 @@ public class PassCommand extends AbstractIrcCommand {
 	}
 
 	@Override
-	public Iterator<String> getArguments() {
+	public UniversalIterator<String> getArguments() {
 		return Iterators.iterator(new String[] {password});
 	}
 

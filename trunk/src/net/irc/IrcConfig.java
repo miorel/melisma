@@ -11,21 +11,22 @@
  * FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
  * details.
  */
-
 package net.irc;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Iterator;
+import java.util.List;
 import java.util.Random;
 import java.util.Stack;
 
 import net.NetConfig;
 
 import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
 
 import util.LogManager;
+
+import com.googlecode.lawu.dp.Iterator;
+import com.googlecode.lawu.util.Iterators;
+import com.googlecode.lawu.util.iterators.UniversalIterator;
 
 public class IrcConfig extends NetConfig {
 	public static final int DEFAULT_PORT = 6667;
@@ -37,7 +38,7 @@ public class IrcConfig extends NetConfig {
 	private String userName = null;
 	private String realName = null;
 	
-	private ArrayList<String> initialChannels = new ArrayList<String>();
+	private List<String> initialChannels = new ArrayList<String>();
 	
 	public IrcConfig() {
 		setPort(DEFAULT_PORT);
@@ -106,23 +107,20 @@ public class IrcConfig extends NetConfig {
 		this.realName = realName;
 	}
 	
-	public Iterator<String> getInitialChannels() {
-		return Collections.unmodifiableList(initialChannels).iterator();
-	}
-
-	public void setInitialChannels(Iterator<String> initialChannels) {
-		this.initialChannels.clear();
-		while(initialChannels.hasNext())
-			this.initialChannels.add(initialChannels.next());
+	public UniversalIterator<String> getInitialChannels() {
+		return Iterators.iterator(initialChannels);
 	}
 	
-	public static Iterator<IrcConfig> parse(Node node) {
+	public void setInitialChannels(Iterator<String> initialChannels) {
+		this.initialChannels.clear();
+		for(String channel: Iterators.adapt(initialChannels))
+			this.initialChannels.add(channel);
+	}
+	
+	public static UniversalIterator<IrcConfig> parse(Node node) {
 		Stack<IrcConfig> configs = new Stack<IrcConfig>();
-		IrcConfig prototype = new IrcConfig(); 
-		Stack<Node> nodes = new Stack<Node>();
-		nodes.add(node);
-		do {
-			Node n = nodes.pop();
+		IrcConfig prototype = new IrcConfig();
+		for(Node n: Iterators.tree(node)) {
 			String name = n.getNodeName();
 			switch(n.getNodeType()) {
 			case Node.TEXT_NODE:
@@ -146,24 +144,19 @@ public class IrcConfig extends NetConfig {
 					configs.peek().initialChannels.add(text.trim());
 				break;
 			case Node.ELEMENT_NODE:
-			case Node.DOCUMENT_NODE:
 				if(name.equals("network"))
 					configs.push(prototype.clone());
-				NodeList children = n.getChildNodes();
-				for(int i = children.getLength() - 1; i >= 0; --i)
-					nodes.push(children.item(i));
 				break;
 			}		
 		}
-		while(!nodes.isEmpty());
 		LogManager.getInstance().info("CONFIG", "Read configuration for " + configs.size() + " networks.");
-		return Collections.unmodifiableList(configs).iterator();
+		return Iterators.iterator(configs);
 	}
 
 	@SuppressWarnings("unchecked")
 	public IrcConfig clone() {
 		IrcConfig ret = (IrcConfig) super.clone();
-		ret.initialChannels = (ArrayList<String>) initialChannels.clone();
+		ret.initialChannels = (ArrayList<String>) ((ArrayList) initialChannels).clone();
 		return ret;
 	}
 }

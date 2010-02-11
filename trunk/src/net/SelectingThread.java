@@ -11,13 +11,12 @@
  * FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
  * details.
  */
-
 package net;
 
 import java.io.IOException;
 import java.nio.channels.SelectionKey;
 import java.nio.channels.Selector;
-import java.util.Iterator;
+import java.util.Set;
 
 import util.LogManager;
 
@@ -50,8 +49,8 @@ public class SelectingThread<C extends NetConfig> extends Thread {
 				interrupt();
 			}
 			if(s > 0) {
-				for(Iterator<SelectionKey> keys = selector.selectedKeys().iterator(); keys.hasNext(); keys.remove()) {
-					SelectionKey key = keys.next();
+				Set<SelectionKey> keys = selector.selectedKeys();
+				for(SelectionKey key: keys) {
 					Client<C> client = (Client<C>) key.attachment();
 					try {
 						if(key.isValid() && key.isConnectable())
@@ -65,6 +64,7 @@ public class SelectingThread<C extends NetConfig> extends Thread {
 						LogManager.getInstance().report("[SELECTOR]", e);
 					}
 				}
+				keys.clear();
 			}
 		}
 	}

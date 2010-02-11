@@ -14,17 +14,19 @@
 
 package net.irc.bot.cmd;
 
+import static com.googlecode.lawu.util.Iterators.iterator;
+
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Iterator;
 import java.util.List;
 
 import net.irc.Entity;
 import net.irc.IrcClient;
 import net.irc.bot.CommandShell;
 import net.irc.cmd.PrivmsgCommand;
-import util.Strings;
 import util.ds.StringNode;
+
+import com.googlecode.lawu.util.Strings;
 
 public class Cmds extends AbstractCommand {
 	public Cmds(CommandShell shell) {
@@ -37,13 +39,11 @@ public class Cmds extends AbstractCommand {
 	public void execute(IrcClient client, Entity origin, String channel, String args) {
 		String target = origin.getNick();
 		List<String> commands = new ArrayList<String>();
-		for(Iterator<Command> commandsIterator = getShell().getCommands(); commandsIterator.hasNext();) {
-			Command command = commandsIterator.next();
+		for(Command command: getShell().getCommands())
 			if(!command.isHidden())
 				commands.add("\2" + command.getName() + "\2");
-		}
 		Collections.sort(commands);
-		client.send(new PrivmsgCommand(target, "Command list: " + Strings.join(", ", commands.iterator())));
+		client.send(new PrivmsgCommand(target, "Command list: " + Strings.join(", ", iterator(commands))));
 	}
 	
 	@Override

@@ -14,11 +14,11 @@
 
 package net.irc.cmd;
 
-import java.util.Iterator;
-
 import net.irc.Entity;
 import net.irc.IrcClient;
 import net.irc.event.IrcEvent;
+
+import com.googlecode.lawu.util.iterators.UniversalIterator;
 
 public interface IrcCommand {
 	public void execute(IrcClient client);
@@ -27,7 +27,7 @@ public interface IrcCommand {
 	
 	public String getCommand();
 	
-	public Iterator<String> getArguments();
+	public UniversalIterator<String> getArguments();
 	
 	public IrcEvent getEvent(IrcClient client);
 }

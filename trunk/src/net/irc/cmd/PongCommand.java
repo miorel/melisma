@@ -11,12 +11,11 @@
  * FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
  * details.
  */
-
 package net.irc.cmd;
 
-import java.util.Iterator;
-
 import net.irc.Entity;
+
+import com.googlecode.lawu.dp.Iterator;
 
 public class PongCommand extends IrcTargetsCommand {
 	public PongCommand(Iterator<String> targets) {

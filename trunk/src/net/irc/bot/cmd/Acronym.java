@@ -26,7 +26,8 @@ import net.irc.IrcClient;
 import net.irc.bot.CommandShell;
 import net.irc.cmd.PrivmsgCommand;
 import util.ResourceLoader;
-import util.Strings;
+
+import com.googlecode.lawu.util.Strings;
 
 public class Acronym extends AbstractCommand {
 	private final Map<Character,List<String>> noun;

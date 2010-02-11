@@ -11,7 +11,6 @@
  * FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
  * details.
  */
-
 package util.thread;
 
 import java.util.Comparator;
@@ -19,7 +18,8 @@ import java.util.PriorityQueue;
 import java.util.Queue;
 
 import util.LogManager;
-import util.ds.Pair;
+
+import com.googlecode.lawu.util.Pair;
 
 public class ScheduledThread extends Thread {
 	private final static Runnable nullRunnable = null;

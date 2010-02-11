@@ -11,17 +11,17 @@
  * FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
  * details.
  */
-
 package net.irc.cmd;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import net.irc.Entity;
-import util.Strings;
 
+import com.googlecode.lawu.dp.Iterator;
 import com.googlecode.lawu.util.Iterators;
+import com.googlecode.lawu.util.Strings;
+import com.googlecode.lawu.util.iterators.UniversalIterator;
 
 public abstract class IrcTargetsCommand extends AbstractIrcCommand {
 	private final String[] targets;
@@ -32,15 +32,13 @@ public abstract class IrcTargetsCommand extends AbstractIrcCommand {
 	
 	public IrcTargetsCommand(Entity origin, Iterator<String> targets) {
 		super(origin);
-		if(targets == null || !targets.hasNext())
-			throw new IllegalArgumentException("can't " + getVerb() + " without targets");
 		List<String> targetsList = new ArrayList<String>();
-		do {
-			String target = targets.next();
+		for(String target: Iterators.adapt(targets)) {
 			validateString("targets", target, false, false);
 			targetsList.add(target);
 		}
-		while(targets.hasNext());
+		if(targetsList.isEmpty())
+			throw new IllegalArgumentException("can't " + getVerb() + " without targets");
 		this.targets = targetsList.toArray(new String[targetsList.size()]);
 	}
 	
@@ -48,12 +46,12 @@ public abstract class IrcTargetsCommand extends AbstractIrcCommand {
 		return getCommand().toLowerCase();
 	}
 	
-	public Iterator<String> getTargets() {
+	public UniversalIterator<String> getTargets() {
 		return Iterators.iterator(targets);
 	}
 	
 	@Override
-	public Iterator<String> getArguments() {
+	public UniversalIterator<String> getArguments() {
 		return Iterators.iterator(new String[] {Strings.join(" ", getTargets())});
 	}
 }

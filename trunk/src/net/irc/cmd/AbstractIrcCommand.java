@@ -15,13 +15,15 @@
 package net.irc.cmd;
 
 import java.net.SocketAddress;
-import java.util.Iterator;
 
 import net.irc.Entity;
 import net.irc.IrcClient;
 import net.irc.event.AbstractIrcEvent;
 import net.irc.event.IrcEvent;
-import util.Strings;
+
+import com.googlecode.lawu.dp.Iterator;
+import com.googlecode.lawu.util.Strings;
+
 import event.EventListener;
 
 public abstract class AbstractIrcCommand implements IrcCommand {
@@ -91,10 +93,10 @@ public abstract class AbstractIrcCommand implements IrcCommand {
 	public void execute(IrcClient client) {
 		StringBuilder sb = new StringBuilder();
 		sb.append(getCommand().toUpperCase());
-		for(Iterator<String> args = getArguments(); args.hasNext();) {
-			String arg = args.next();
+		for(Iterator<String> args = getArguments(); !args.isDone(); args.advance()) {
+			String arg = args.current();
 			sb.append(' ');
-			if(!args.hasNext() && !arg.matches("\\S*"))
+			if(args.isDone() && !arg.matches("\\S*"))
 				sb.append(':');
 			sb.append(arg);
 		}

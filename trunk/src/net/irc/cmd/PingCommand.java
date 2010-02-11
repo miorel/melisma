@@ -14,14 +14,13 @@
 
 package net.irc.cmd;
 
-import java.util.Iterator;
-
 import net.irc.Entity;
 import net.irc.IrcClient;
 import net.irc.event.AbstractIrcEvent;
 import net.irc.event.IrcEvent;
 import net.irc.event.IrcEventListener;
 
+import com.googlecode.lawu.dp.Iterator;
 import com.googlecode.lawu.util.Iterators;
 
 import event.EventListener;

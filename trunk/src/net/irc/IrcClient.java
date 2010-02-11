@@ -11,16 +11,13 @@
  * FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
  * details.
  */
-
 package net.irc;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.nio.channels.Selector;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
@@ -50,6 +47,9 @@ import net.irc.cmd.UserCommand;
 import net.irc.event.IrcEventListener;
 import util.LogManager;
 import util.ResourceLoader;
+
+import com.googlecode.lawu.util.Iterators;
+import com.googlecode.lawu.util.iterators.UniversalIterator;
 
 public class IrcClient extends LineOrientedClient<IrcConfig> {
 	private final static Pattern COMMAND = Pattern.compile("\\s*(?::(\\S+)\\s+)?(\\S+)\\s*(.*)");
@@ -179,11 +179,11 @@ public class IrcClient extends LineOrientedClient<IrcConfig> {
 		return getConfig().getAccountPassword();
 	}
 
-	public Iterator<String> getChannels() {
-		return Collections.unmodifiableSet(channels).iterator();
+	public UniversalIterator<String> getChannels() {
+		return Iterators.adapt(channels);
 	}
 	
-	public Iterator<String> getInitialChannels() {
+	public UniversalIterator<String> getInitialChannels() {
 		return getConfig().getInitialChannels();
 	}
 	
@@ -306,8 +306,8 @@ public class IrcClient extends LineOrientedClient<IrcConfig> {
 		case 375:
 			break;
 		case 376:
-			for(Iterator<String> channels = getConfig().getInitialChannels(); channels.hasNext();)
-			send(new JoinCommand(channels.next()));
+			for(String channel: getConfig().getInitialChannels())
+				send(new JoinCommand(channel));
 			if(getAccountPassword() != null)
 				send(new PrivmsgCommand("NickServ", String.format("IDENTIFY %s %s", getDesiredNick(), getAccountPassword())));
 			break;
