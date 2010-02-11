@@ -21,7 +21,9 @@ import net.irc.IrcClient;
 import net.irc.event.AbstractIrcEvent;
 import net.irc.event.IrcEvent;
 import net.irc.event.IrcEventListener;
-import util.iterator.ArrayIterator;
+
+import com.googlecode.lawu.util.Iterators;
+
 import event.EventListener;
 
 public class KickCommand extends AbstractIrcCommand {
@@ -69,7 +71,7 @@ public class KickCommand extends AbstractIrcCommand {
 	
 	@Override
 	public Iterator<String> getArguments() {
-		return new ArrayIterator<String>(hasMessage() ? new String[] {getChannel(), getNick(), getMessage()} : new String[] {getChannel(), getNick()});
+		return Iterators.iterator(hasMessage() ? new String[] {getChannel(), getNick(), getMessage()} : new String[] {getChannel(), getNick()});
 	}
 
 	@Override

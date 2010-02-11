@@ -17,7 +17,8 @@ package net.irc.cmd;
 import java.util.Iterator;
 
 import net.irc.Entity;
-import util.iterator.ArrayIterator;
+
+import com.googlecode.lawu.util.Iterators;
 
 public class PassCommand extends AbstractIrcCommand {
 	private final String password;
@@ -38,7 +39,7 @@ public class PassCommand extends AbstractIrcCommand {
 
 	@Override
 	public Iterator<String> getArguments() {
-		return new ArrayIterator<String>(new String[] {password});
+		return Iterators.iterator(new String[] {password});
 	}
 
 	@Override

@@ -1,0 +1,8 @@
+2010-02-11  Miorel-Lucian Palii <mlpalii@gmail.com>
+	* lib/lawu-0.0.2.jar:
+	  added to replace iterator usage, and hopefully other things in the near
+	  future
+	* src:
+	  changed a number of source files in light of the move to new iterators
+	* melisma.properties, build.xml, src/net/irc/bot/cmd/Version.java:
+	  some changes to build process, bumped project version to 0.2.1

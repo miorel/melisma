@@ -5,8 +5,8 @@
 	</description>
 	
 	<property file="${ant.project.name}.properties"/>
-
 	<fileset id="src.fileset" dir="." excludes="${dist.dir}/**,${bin.dir}/**"/>
+	<property name="dist.name" value="${ant.project.name}-${project.version}"/>
 	
 	<target name="clean-bin" description="removes the build directory">
 		<delete dir="${bin.dir}"/>
@@ -22,7 +22,9 @@
 	<target name="bin" description="compiles the project">
 		<mkdir dir="${bin.dir}"/>
 		<depend srcdir="${src.dir}" destdir="${bin.dir}" closure="yes"/>
-		<javac srcdir="${src.dir}" destdir="${bin.dir}"/>
+		<javac srcdir="${src.dir}" destdir="${bin.dir}"
+			classpath="${lib.dir}/lawu-0.0.2.jar"
+			/>
 	</target>	
 	
 	<target name="src-dist-tgz" description="creates a gzipped tarball source distribution">
@@ -52,8 +54,13 @@
 		<mkdir dir="${dist.dir}"/>
 		<jar destfile="${dist.dir}/${dist.name}.jar">
 			<manifest>
+				<attribute name="Implementation-Title" value="${ant.project.name}"/>
+				<attribute name="Implementation-Version" value="${project.version}"/>
 				<attribute name="Main-Class" value="${src.main}"/>
 			</manifest>
+			
+			<zipfileset src="${lib.dir}/lawu-0.0.2.jar" excludes="META-INF/**"/>
+
 			<fileset dir="${bin.dir}" includes="**/*.class"/>
 			<fileset dir="${res.dir}"/>
 		</jar>

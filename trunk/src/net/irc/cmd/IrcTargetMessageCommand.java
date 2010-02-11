@@ -11,13 +11,13 @@
  * FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
  * details.
  */
-
 package net.irc.cmd;
 
 import java.util.Iterator;
 
 import net.irc.Entity;
-import util.iterator.ArrayIterator;
+
+import com.googlecode.lawu.util.Iterators;
 
 public abstract class IrcTargetMessageCommand extends AbstractIrcCommand {
 	private final String target;
@@ -41,6 +41,6 @@ public abstract class IrcTargetMessageCommand extends AbstractIrcCommand {
 	
 	@Override
 	public Iterator<String> getArguments() {
-		return new ArrayIterator<String>(new String[] {getTarget(), getMessage()});
+		return Iterators.iterator(getTarget(), getMessage());
 	}
 }

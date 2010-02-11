@@ -20,7 +20,8 @@ import java.util.List;
 
 import net.irc.Entity;
 import util.Strings;
-import util.iterator.ArrayIterator;
+
+import com.googlecode.lawu.util.Iterators;
 
 public abstract class IrcTargetsCommand extends AbstractIrcCommand {
 	private final String[] targets;
@@ -48,11 +49,11 @@ public abstract class IrcTargetsCommand extends AbstractIrcCommand {
 	}
 	
 	public Iterator<String> getTargets() {
-		return new ArrayIterator<String>(targets);
+		return Iterators.iterator(targets);
 	}
 	
 	@Override
 	public Iterator<String> getArguments() {
-		return new ArrayIterator<String>(new String[] {Strings.join(" ", getTargets())});
+		return Iterators.iterator(new String[] {Strings.join(" ", getTargets())});
 	}
 }

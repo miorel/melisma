@@ -21,7 +21,9 @@ import net.irc.IrcClient;
 import net.irc.event.AbstractIrcEvent;
 import net.irc.event.IrcEvent;
 import net.irc.event.IrcEventListener;
-import util.iterator.ArrayIterator;
+
+import com.googlecode.lawu.util.Iterators;
+
 import event.EventListener;
 
 public class PingCommand extends IrcTargetsCommand {
@@ -35,7 +37,7 @@ public class PingCommand extends IrcTargetsCommand {
 	
 	public static PingCommand build(Entity origin, String[] param) {
 		validateParam(param, 1);
-		return new PingCommand(origin, new ArrayIterator<String>(param[0].split(" ")));
+		return new PingCommand(origin, Iterators.iterator(param[0].split(" ")));
 	}
 	
 	@Override

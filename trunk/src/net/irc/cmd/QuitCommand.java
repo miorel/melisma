@@ -21,7 +21,9 @@ import net.irc.IrcClient;
 import net.irc.event.AbstractIrcEvent;
 import net.irc.event.IrcEvent;
 import net.irc.event.IrcEventListener;
-import util.iterator.ArrayIterator;
+
+import com.googlecode.lawu.util.Iterators;
+
 import event.EventListener;
 
 public class QuitCommand extends AbstractIrcCommand {
@@ -63,7 +65,7 @@ public class QuitCommand extends AbstractIrcCommand {
 	@Override
 	public Iterator<String> getArguments() {
 		String[] args = hasMessage() ? new String[] {getMessage()} : new String[0];
-		return new ArrayIterator<String>(args);
+		return Iterators.iterator(args);
 	}
 
 	@Override

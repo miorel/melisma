@@ -17,7 +17,8 @@ package net.irc.cmd;
 import java.util.Iterator;
 
 import net.irc.Entity;
-import util.iterator.ArrayIterator;
+
+import com.googlecode.lawu.util.Iterators;
 
 public class UserCommand extends AbstractIrcCommand {
 	public static final int MODE_INVISIBLE = 1 << 3;
@@ -64,7 +65,7 @@ public class UserCommand extends AbstractIrcCommand {
 	
 	@Override
 	public Iterator<String> getArguments() {
-		return new ArrayIterator<String>(new String[] {getUserName(), Integer.toString(getInitialMode()), "*", getRealName()});
+		return Iterators.iterator(getUserName(), Integer.toString(getInitialMode()), "*", getRealName());
 	}
 
 	@Override

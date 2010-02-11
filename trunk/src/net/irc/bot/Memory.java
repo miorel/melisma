@@ -17,7 +17,8 @@ package net.irc.bot;
 import java.util.Iterator;
 
 import util.ds.StringNode;
-import util.iterator.ArrayIterator;
+
+import com.googlecode.lawu.util.Iterators;
 
 public class Memory {
 	private final StringNode root;
@@ -43,7 +44,7 @@ public class Memory {
 	}
 	
 	public StringNode getNode(String... keys) {
-		return getNode(new ArrayIterator<String>(keys));
+		return getNode(Iterators.iterator(keys));
 	}
 	
 	public String getValue(Iterator<String> keys) {

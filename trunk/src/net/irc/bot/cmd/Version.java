@@ -33,6 +33,7 @@ public class Version extends AbstractCommand {
 	@Override
 	public void execute(IrcClient client, Entity origin, String channel, String args) {
 		String target = channel == null ? origin.getNick() : channel;
-		client.send(new PrivmsgCommand(target, "My version is 0.2.0 (which is still pre-alpha by any real standard)."));
+		client.send(new PrivmsgCommand(target, "My version is 0.2.1 (which is still pre-alpha by any real standard)."));
+		// it would be nice if this was read from the properties file...
 	}
 }

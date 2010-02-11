@@ -11,7 +11,6 @@
  * FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
  * details.
  */
-
 package util;
 
 import java.util.HashMap;
@@ -20,7 +19,7 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import util.iterator.ArrayIterator;
+import com.googlecode.lawu.util.Iterators;
 
 public class Strings {
 	private final static Pattern WORDS = Pattern.compile("(\\S)(\\S*)");
@@ -96,6 +95,6 @@ public class Strings {
 	}
 	
 	public static String join(String separator, String... strings) {
-		return join(separator, new ArrayIterator<String>(strings));
+		return join(separator, Iterators.iterator(strings));
 	}
 }

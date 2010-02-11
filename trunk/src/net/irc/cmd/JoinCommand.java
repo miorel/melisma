@@ -16,14 +16,15 @@ package net.irc.cmd;
 
 import java.util.Iterator;
 
-import event.EventListener;
-
 import net.irc.Entity;
 import net.irc.IrcClient;
 import net.irc.event.AbstractIrcEvent;
 import net.irc.event.IrcEvent;
 import net.irc.event.IrcEventListener;
-import util.iterator.ArrayIterator;
+
+import com.googlecode.lawu.util.Iterators;
+
+import event.EventListener;
 
 public class JoinCommand extends AbstractIrcCommand {
 	private final String channel;
@@ -71,7 +72,7 @@ public class JoinCommand extends AbstractIrcCommand {
 	@Override
 	public Iterator<String> getArguments() {
 		String[] args = hasKey() ? new String[] {getChannel(), getKey()} : new String[] {getChannel()};
-		return new ArrayIterator<String>(args);
+		return Iterators.iterator(args);
 	}
 
 	@Override

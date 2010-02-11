@@ -21,7 +21,9 @@ import net.irc.IrcClient;
 import net.irc.event.AbstractIrcEvent;
 import net.irc.event.IrcEvent;
 import net.irc.event.IrcEventListener;
-import util.iterator.ArrayIterator;
+
+import com.googlecode.lawu.util.Iterators;
+
 import event.EventListener;
 
 public class InviteCommand extends AbstractIrcCommand {
@@ -50,7 +52,7 @@ public class InviteCommand extends AbstractIrcCommand {
 
 	@Override
 	public Iterator<String> getArguments() {
-		return new ArrayIterator<String>(new String[] {getNick(), getChannel()});
+		return Iterators.iterator(getNick(), getChannel());
 	}
 
 	@Override
