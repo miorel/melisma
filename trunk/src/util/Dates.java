@@ -29,7 +29,7 @@ public class Dates {
 	}
 	
 	public static String date(Date date) {
-		return Dates.DATE.format(date);
+		return DATE.format(date);
 	}
 
 	public static String time() {
@@ -37,6 +37,6 @@ public class Dates {
 	}
 	
 	public static String time(Date date) {
-		return Dates.DATE_TIME.format(date);
+		return DATE_TIME.format(date);
 	}
 }

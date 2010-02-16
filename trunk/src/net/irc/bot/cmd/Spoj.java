@@ -11,28 +11,19 @@
  * FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
  * details.
  */
-
 package net.irc.bot.cmd;
-
-import java.net.URL;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import net.irc.Entity;
 import net.irc.IrcClient;
 import net.irc.bot.CommandShell;
 import net.irc.cmd.PrivmsgCommand;
 import util.Dates;
-import util.net.spoj.Language;
 
-public class Spoj extends AsynchronousCommand {
-	private static final DateFormat DATE_PARSER = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss zzz");
-	
+import com.googlecode.lawu.dp.Iterator;
+import com.googlecode.lawu.net.spoj.Submission;
+import com.googlecode.lawu.net.spoj.User;
+
+public class Spoj extends AsynchronousCommand {	
 	public Spoj(CommandShell shell) {
 		super(shell, "spoj");
 	}
@@ -46,41 +37,23 @@ public class Spoj extends AsynchronousCommand {
 	@Override
 	protected void doExecute(IrcClient client, Entity origin, String channel, String args) {
 		String target = channel == null ? origin.getNick() : channel;
-		String username = args.trim().toLowerCase();
+		String username = args.trim();
 		if(args.isEmpty())
 			client.send(new PrivmsgCommand(target, "Please specify a username."));
-		else if(!username.matches("[a-z][a-z\\d_]{2,13}"))
-			client.send(new PrivmsgCommand(target, String.format("Invalid username: %s", args)));
 		else {
-			String url = String.format("http://www.spoj.pl/status/%s/signedlist/", username);
 			try {
-				List<String> tokens = new ArrayList<String>();
-				Scanner sc = new Scanner(new URL(url).openStream());
-				while(sc.hasNextLine()) {
-					String line = sc.nextLine();
-					if(line.matches("\\s*(?:\\|-+){7}\\|\\s*"))
-						break;
-				}
-				if(sc.hasNextLine()) {
-					Pattern p = Pattern.compile("\\s*([^\\|]+?)\\s*(?=\\|)");
-					Matcher m = p.matcher(sc.nextLine().trim());
-					while(m.find())
-						tokens.add(m.group(1));
-				}
-				if(tokens.size() < 7)
+				User spojUser = new User(username);
+				Iterator<Submission> submits = spojUser.getSubmissions().reverse();
+				if(submits.isDone()) 
 					client.send(new PrivmsgCommand(target, String.format("Hmm, it doesn't look like %s made any submissions. Does this user even exist?", username)));
 				else {
-					String date = Dates.time(DATE_PARSER.parse(tokens.get(1) + " CET"));
-					String language = tokens.get(6);
-					try {
-						language = Language.forSpojName(language).toString();
-					}
-					catch(Exception e) {}
-					client.send(new PrivmsgCommand(target, String.format("%s - %s submitted %s in %s and received %s.", date, username, tokens.get(2), language, tokens.get(3))));
+					Submission s = submits.current();
+					client.send(new PrivmsgCommand(target, String.format("%s - %s submitted %s in %s and received %s.", Dates.time(s.getDate()), username, s.getProblem(), s.getLanguage().getRealName(), s.getResult())));
 				}
 			}
 			catch(Exception e) {
-				client.send(new PrivmsgCommand(target, "There was a problem getting the data. Try again later."));
+				e.printStackTrace();
+				client.send(new PrivmsgCommand(target, "Error! " + e.getMessage()));
 			}
 		}
 	}

@@ -88,6 +88,7 @@ public class Weather extends AsynchronousCommand {
 			}
 		}
 		catch(Exception e) {
+			e.printStackTrace();
 			client.send(new PrivmsgCommand(target, "There was a problem interpreting the data. Try again later?"));
 		}
 	}

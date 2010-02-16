@@ -11,7 +11,6 @@
  * FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
  * details.
  */
-
 package net.irc.bot;
 
 import java.util.HashMap;
@@ -20,7 +19,8 @@ import java.util.Properties;
 
 import util.LogManager;
 import util.ResourceLoader;
-import util.net.Bitly;
+
+import com.googlecode.lawu.net.Bitly;
 
 public class ObjectStore {
 	private final Map<String,Object> objectStore = new HashMap<String,Object>();

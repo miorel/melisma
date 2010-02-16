@@ -21,11 +21,11 @@ import net.irc.cmd.PrivmsgCommand;
 import util.LogManager;
 
 public class Bitly extends AbstractCommand {
-	private final util.net.Bitly bitly;
+	private final com.googlecode.lawu.net.Bitly bitly;
 	
 	public Bitly(CommandShell shell) {
 		super(shell, "bitly", "(?:bitly|short(?:en)?)");
-		this.bitly = (util.net.Bitly) getObjectStore().getObject("bitly");
+		this.bitly = (com.googlecode.lawu.net.Bitly) getObjectStore().getObject("bitly");
 	}
 	
 	@Override

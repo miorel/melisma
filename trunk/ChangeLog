@@ -1,3 +1,10 @@
+2010-02-16  Miorel-Lucian Palii <mlpalii@gmail.com>
+	* src/net/irc/cmd/AbstractIrcCommand.java:
+	  fixed bug with colon in commands
+	* src:
+	  replaced a bunch of things with equivalents in lawu library, but a rewrite
+	  of much of the bot would not be unwelcome
+
 2010-02-11  Miorel-Lucian Palii <mlpalii@gmail.com>
 	* lib/lawu-0.0.2.jar:
 	  added to replace iterator usage, and hopefully other things in the near

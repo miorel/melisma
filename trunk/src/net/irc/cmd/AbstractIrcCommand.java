@@ -11,7 +11,6 @@
  * FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
  * details.
  */
-
 package net.irc.cmd;
 
 import java.net.SocketAddress;
@@ -93,8 +92,9 @@ public abstract class AbstractIrcCommand implements IrcCommand {
 	public void execute(IrcClient client) {
 		StringBuilder sb = new StringBuilder();
 		sb.append(getCommand().toUpperCase());
-		for(Iterator<String> args = getArguments(); !args.isDone(); args.advance()) {
+		for(Iterator<String> args = getArguments(); !args.isDone();) {
 			String arg = args.current();
+			args.advance();
 			sb.append(' ');
 			if(args.isDone() && !arg.matches("\\S*"))
 				sb.append(':');

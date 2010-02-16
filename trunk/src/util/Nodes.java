@@ -11,48 +11,40 @@
  * FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
  * details.
  */
-
 package util;
 
 import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
+
+import com.googlecode.lawu.util.Iterators;
 
 public class Nodes {
 	private Nodes() {
 	}
 	
 	public static Node getChildNode(Node node, String... names) {
-		Node ret = node;
 		for(String name: names) {
-			if(ret == null)
+			if(node == null)
 				break;
 			Node next = null;
-			NodeList list = ret.getChildNodes();
-			for(int i = 0; i != list.getLength(); ++i) {
-				Node cur = list.item(i);
+			for(Node cur: Iterators.iterator(node.getChildNodes()))
 				if(cur.getNodeName().equals(name)) {
 					next = cur;
 					break;
 				}
-			}
-			ret = next;
+			node = next;
 		}
-		return ret;
+		return node;
 	}
 	
 	public static String getText(Node node, String... names) {
 		String ret = null;
 		node = getChildNode(node, names);
-		if(node != null) {
-			NodeList list = node.getChildNodes();	
-			for(int i = 0; i != list.getLength(); ++i) {
-				Node cur = list.item(i);
+		if(node != null)
+			for(Node cur: Iterators.iterator(node.getChildNodes()))
 				if(cur.getNodeType() == Node.TEXT_NODE) {
 					ret = cur.getTextContent();
 					break;
 				}
-			}
-		}
 		return ret;
 	}
 }
