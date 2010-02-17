@@ -22,9 +22,11 @@
 	<target name="bin" description="compiles the project">
 		<mkdir dir="${bin.dir}"/>
 		<depend srcdir="${src.dir}" destdir="${bin.dir}" closure="yes"/>
-		<javac srcdir="${src.dir}" destdir="${bin.dir}"
-			classpath="${lib.dir}/lawu-0.0.2.jar"
-			/>
+		<javac srcdir="${src.dir}" destdir="${bin.dir}">
+			<classpath>
+				<fileset dir="${lib.dir}"/>
+			</classpath>
+		</javac>
 	</target>	
 	
 	<target name="src-dist-tgz" description="creates a gzipped tarball source distribution">
@@ -59,7 +61,7 @@
 				<attribute name="Main-Class" value="${src.main}"/>
 			</manifest>
 			
-			<zipfileset src="${lib.dir}/lawu-0.0.2.jar" excludes="META-INF/**"/>
+			<zipfileset src="${lib.dir}/lawu-0.0.3.jar" excludes="META-INF/**"/>
 
 			<fileset dir="${bin.dir}" includes="**/*.class"/>
 			<fileset dir="${res.dir}"/>

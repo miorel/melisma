@@ -6,6 +6,8 @@ net.irc.bot.cmd.Time
 net.irc.bot.cmd.Pick
 net.irc.bot.cmd.Roll
 net.irc.bot.cmd.Bitly
+net.irc.bot.cmd.Isgd
+net.irc.bot.cmd.TinyUrl
 net.irc.bot.cmd.Google
 net.irc.bot.cmd.YouTube
 net.irc.bot.cmd.Wiki
@@ -17,5 +19,3 @@ net.irc.bot.cmd.Uptime
 net.irc.bot.cmd.Sha
 net.irc.bot.cmd.Md5
 net.irc.bot.cmd.Timer
-net.irc.bot.cmd.Login
-net.irc.bot.cmd.Logout

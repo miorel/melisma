@@ -21,12 +21,12 @@ import util.LogManager;
 
 import com.googlecode.lawu.net.UrlShortener;
 
-public class Bitly extends AbstractCommand {
+public class Isgd extends AbstractCommand {
 	private final UrlShortener shortener;
 	
-	public Bitly(CommandShell shell) {
-		super(shell, "bitly");
-		this.shortener = (UrlShortener) getObjectStore().getObject("bitly");
+	public Isgd(CommandShell shell) {
+		super(shell, "isgd", "(?:isgd|short(?:en)?)");
+		this.shortener = new com.googlecode.lawu.net.Isgd();
 	}
 	
 	@Override
@@ -48,6 +48,6 @@ public class Bitly extends AbstractCommand {
 	@Override
 	public String getHelp() {
 		String trigger = getShell().getTrigger();
-		return String.format("Usage: \2%1$sbitly url\2. Shortens the given URL through the http://bit.ly/ service.", trigger);
+		return String.format("Usage: \2%1$sisgd url\2. Shortens the given URL through the http://is.gd/ service.", trigger);
 	}
 }

@@ -17,7 +17,6 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
-import java.util.Scanner;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -43,9 +42,8 @@ public class CommandShell extends BrainModule {
 	public CommandShell(Brain brain) {
 		super(brain);
 		prepareStrings();
-		Scanner sc = ResourceLoader.getInstance().getScanner("etc/commands.txt", true, true);
-		while(sc.hasNextLine()) {
-			String line = sc.nextLine().replaceFirst("#.*$", "").trim();
+		for(String line: Iterators.lines(ResourceLoader.getInstance().getScanner("etc/commands.txt", true, true))) {
+			line = line.replaceFirst("#.*$", "").trim();
 			if(!line.isEmpty())
 				try {
 					Command command = (Command) Class.forName(line).getConstructor(CommandShell.class).newInstance(this);

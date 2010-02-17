@@ -89,11 +89,11 @@ public class Entity {
 	public boolean equals(Object o) {
 		boolean ret = false;
 		if(o instanceof Entity) {
-			Entity u = (Entity) o;
-			ret = (this.address == null ? u.address == null : this.address.equals(u.address))
-				&& (this.nick == null ? u.nick == null : this.nick.equals(u.nick))
-				&& (this.identd == null ? u.identd == null : this.identd.equals(u.identd))
-				&& this.host.equals(u.host);
+			Entity e = (Entity) o;
+			ret = (this.address == null ? e.address == null : this.address.equals(e.address))
+				&& (this.nick == null ? e.nick == null : this.nick.equals(e.nick))
+				&& (this.identd == null ? e.identd == null : this.identd.equals(e.identd))
+				&& this.host.equals(e.host);
 		}
 		return ret;
 	}

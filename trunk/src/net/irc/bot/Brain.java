@@ -32,8 +32,8 @@ import org.xml.sax.SAXException;
 import util.LogManager;
 import util.ResourceLoader;
 import util.ds.StringNode;
-import util.thread.WorkerThread;
 
+import com.googlecode.lawu.thread.WorkerThread;
 import com.googlecode.lawu.util.Iterators;
 import com.googlecode.lawu.util.iterators.UniversalIterator;
 
