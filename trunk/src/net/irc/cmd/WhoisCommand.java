@@ -13,7 +13,7 @@
  */
 package net.irc.cmd;
 
-import net.irc.Entity;
+import com.googlecode.lawu.net.irc.Entity;
 
 public class WhoisCommand extends IrcNicknameCommand {
 	public WhoisCommand(Entity origin, String nick) {

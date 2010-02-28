@@ -13,16 +13,15 @@
  */
 package net.irc.cmd;
 
-import net.irc.Entity;
 import net.irc.IrcClient;
 import net.irc.event.AbstractIrcEvent;
 import net.irc.event.IrcEvent;
 import net.irc.event.IrcEventListener;
 
 import com.googlecode.lawu.dp.Iterator;
+import com.googlecode.lawu.event.EventListener;
+import com.googlecode.lawu.net.irc.Entity;
 import com.googlecode.lawu.util.Iterators;
-
-import event.EventListener;
 
 public class PingCommand extends IrcTargetsCommand {
 	public PingCommand(Iterator<String> targets) {

@@ -21,7 +21,6 @@ import java.util.List;
 
 import javax.xml.parsers.DocumentBuilderFactory;
 
-import net.irc.Entity;
 import net.irc.IrcClient;
 import net.irc.bot.CommandShell;
 import net.irc.cmd.PrivmsgCommand;
@@ -30,6 +29,7 @@ import org.w3c.dom.Node;
 
 import util.Nodes;
 
+import com.googlecode.lawu.net.irc.Entity;
 import com.googlecode.lawu.util.Strings;
 
 public class Weather extends AsynchronousCommand {	

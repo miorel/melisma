@@ -13,9 +13,8 @@
  */
 package net.irc.cmd;
 
-import net.irc.Entity;
-
 import com.googlecode.lawu.dp.Iterator;
+import com.googlecode.lawu.net.irc.Entity;
 
 public class PongCommand extends IrcTargetsCommand {
 	public PongCommand(Iterator<String> targets) {

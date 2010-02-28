@@ -19,3 +19,4 @@ net.irc.bot.cmd.Uptime
 net.irc.bot.cmd.Sha
 net.irc.bot.cmd.Md5
 net.irc.bot.cmd.Timer
+net.irc.bot.cmd.Javadoc

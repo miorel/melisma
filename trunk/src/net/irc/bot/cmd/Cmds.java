@@ -19,12 +19,12 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import net.irc.Entity;
 import net.irc.IrcClient;
 import net.irc.bot.CommandShell;
 import net.irc.cmd.PrivmsgCommand;
 import util.ds.StringNode;
 
+import com.googlecode.lawu.net.irc.Entity;
 import com.googlecode.lawu.util.Strings;
 
 public class Cmds extends AbstractCommand {

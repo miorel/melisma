@@ -13,9 +13,10 @@
  */
 package net.irc.bot.cmd;
 
-import net.irc.Entity;
 import net.irc.IrcClient;
 import net.irc.bot.CommandShell;
+
+import com.googlecode.lawu.net.irc.Entity;
 
 public abstract class AsynchronousCommand extends AbstractCommand {
 	public AsynchronousCommand(CommandShell shell, String name) {

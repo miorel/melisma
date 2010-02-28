@@ -13,20 +13,20 @@
  */
 package net.irc.bot.cmd;
 
-import net.irc.Entity;
 import net.irc.IrcClient;
 import net.irc.bot.CommandShell;
 import net.irc.cmd.PrivmsgCommand;
 import util.LogManager;
 
-import com.googlecode.lawu.net.UrlShortener;
+import com.googlecode.lawu.net.irc.Entity;
+import com.googlecode.lawu.net.www.UrlShortener;
 
 public class TinyUrl extends AbstractCommand {
 	private final UrlShortener shortener;
 	
 	public TinyUrl(CommandShell shell) {
 		super(shell, "tinyurl");
-		this.shortener = new com.googlecode.lawu.net.TinyUrl();
+		this.shortener = new com.googlecode.lawu.net.www.TinyUrl();
 	}
 	
 	@Override

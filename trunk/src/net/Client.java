@@ -15,7 +15,6 @@ package net;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
-import java.net.SocketAddress;
 import java.nio.ByteBuffer;
 import java.nio.CharBuffer;
 import java.nio.channels.ClosedChannelException;
@@ -47,7 +46,7 @@ public abstract class Client<C extends NetConfig> {
 	private final EventManager<NetworkEventListener> eventManager;
 	
 	private SocketChannel channel;
-	private SocketAddress address;
+	private InetSocketAddress address;
 	private Selector selector;
 	
 	private final Queue<String> outputQueue;
@@ -92,7 +91,7 @@ public abstract class Client<C extends NetConfig> {
 		return config;
 	}
 	
-	public SocketAddress getAddress() {
+	public InetSocketAddress getAddress() {
 		return address;
 	}
 

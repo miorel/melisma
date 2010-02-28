@@ -16,12 +16,12 @@ package net.irc.bot;
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import net.irc.Entity;
 import net.irc.IrcClient;
 import net.irc.bot.cmd.Command;
 import net.irc.cmd.PrivmsgCommand;
@@ -29,6 +29,7 @@ import util.LogManager;
 import util.ResourceLoader;
 import util.ds.StringNode;
 
+import com.googlecode.lawu.net.irc.Entity;
 import com.googlecode.lawu.util.Iterators;
 import com.googlecode.lawu.util.iterators.UniversalIterator;
 
@@ -71,9 +72,9 @@ public class CommandShell extends BrainModule {
 		String channel = command.getTarget();
 		if(channel.equals(client.getActualNick()))
 			channel = null;
-		Matcher m = Pattern.compile("(?:\\s*" + Pattern.quote(getTrigger()) + "\\s*)+(\\S+)\\s*(.*)").matcher(command.getMessage());
+		Matcher m = Pattern.compile("(?:\\s*" + Pattern.quote(getTrigger()) + "\\s*)+(\\p{Alpha}\\S*)\\s*(.*)").matcher(command.getMessage());
 		if(m.matches())
-			handleCommand(client, origin, channel, m.group(1).toLowerCase(), m.group(2));
+			handleCommand(client, origin, channel, m.group(1).toLowerCase(Locale.ENGLISH), m.group(2));
 	}
 
 	public String getTrigger() {

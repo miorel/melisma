@@ -13,11 +13,12 @@
  */
 package net.irc.bot.cmd;
 
-import net.irc.Entity;
 import net.irc.IrcClient;
 import net.irc.bot.CommandShell;
 import net.irc.cmd.PrivmsgCommand;
-import util.thread.ScheduledThread;
+
+import com.googlecode.lawu.net.irc.Entity;
+import com.googlecode.lawu.thread.ScheduledThread;
 
 public class Timer extends AbstractCommand {	
 	private final ScheduledThread timerThread;
@@ -68,7 +69,7 @@ public class Timer extends AbstractCommand {
 			response = "I prefer decimal numbers.";
 		if(response == null) {
 			response = String.format("Okay, %s, I'm setting a timer just for you.", origin.getNick());
-			timerThread.queueTask(time, new Runnable() {
+			timerThread.enqueue(time, new Runnable() {
 				@Override
 				public void run() {
 					String msg = "Your timer has expired!";

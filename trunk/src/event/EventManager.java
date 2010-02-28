@@ -18,6 +18,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import com.googlecode.lawu.event.EventListener;
+
 /**
  * Keeps a set of event listeners and distributes events to them.
  * 

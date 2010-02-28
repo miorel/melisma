@@ -13,9 +13,10 @@
  */
 package net.irc.cmd;
 
-import net.irc.Entity;
 import net.irc.IrcClient;
 import net.irc.event.IrcEvent;
+
+import com.googlecode.lawu.net.irc.Entity;
 
 public class SqueryCommand extends IrcTargetMessageCommand {	
 	public SqueryCommand(Entity origin, String target, String message) {

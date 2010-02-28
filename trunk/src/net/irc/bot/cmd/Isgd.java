@@ -13,20 +13,20 @@
  */
 package net.irc.bot.cmd;
 
-import net.irc.Entity;
 import net.irc.IrcClient;
 import net.irc.bot.CommandShell;
 import net.irc.cmd.PrivmsgCommand;
 import util.LogManager;
 
-import com.googlecode.lawu.net.UrlShortener;
+import com.googlecode.lawu.net.irc.Entity;
+import com.googlecode.lawu.net.www.UrlShortener;
 
 public class Isgd extends AbstractCommand {
 	private final UrlShortener shortener;
 	
 	public Isgd(CommandShell shell) {
 		super(shell, "isgd", "(?:isgd|short(?:en)?)");
-		this.shortener = new com.googlecode.lawu.net.Isgd();
+		this.shortener = new com.googlecode.lawu.net.www.Isgd();
 	}
 	
 	@Override

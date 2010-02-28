@@ -13,6 +13,8 @@
  */
 package event;
 
+import com.googlecode.lawu.event.EventListener;
+
 /**
  * Object representation of an event.
  * 

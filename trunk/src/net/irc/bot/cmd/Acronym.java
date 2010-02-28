@@ -20,12 +20,12 @@ import java.util.Map;
 import java.util.Random;
 import java.util.Scanner;
 
-import net.irc.Entity;
 import net.irc.IrcClient;
 import net.irc.bot.CommandShell;
 import net.irc.cmd.PrivmsgCommand;
 import util.ResourceLoader;
 
+import com.googlecode.lawu.net.irc.Entity;
 import com.googlecode.lawu.util.Strings;
 
 public class Acronym extends AbstractCommand {

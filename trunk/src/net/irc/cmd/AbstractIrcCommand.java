@@ -15,15 +15,14 @@ package net.irc.cmd;
 
 import java.net.SocketAddress;
 
-import net.irc.Entity;
 import net.irc.IrcClient;
 import net.irc.event.AbstractIrcEvent;
 import net.irc.event.IrcEvent;
 
 import com.googlecode.lawu.dp.Iterator;
+import com.googlecode.lawu.event.EventListener;
+import com.googlecode.lawu.net.irc.Entity;
 import com.googlecode.lawu.util.Strings;
-
-import event.EventListener;
 
 public abstract class AbstractIrcCommand implements IrcCommand {
 	private final Entity origin;

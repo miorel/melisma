@@ -13,10 +13,10 @@
  */
 package net.irc.cmd;
 
-import net.irc.Entity;
 import net.irc.IrcClient;
 import net.irc.event.IrcEvent;
 
+import com.googlecode.lawu.net.irc.Entity;
 import com.googlecode.lawu.util.iterators.UniversalIterator;
 
 public interface IrcCommand {

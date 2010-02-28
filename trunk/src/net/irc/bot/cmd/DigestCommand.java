@@ -16,10 +16,11 @@ package net.irc.bot.cmd;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-import net.irc.Entity;
 import net.irc.IrcClient;
 import net.irc.bot.CommandShell;
 import net.irc.cmd.PrivmsgCommand;
+
+import com.googlecode.lawu.net.irc.Entity;
 
 public abstract class DigestCommand extends AbstractCommand {
 	public DigestCommand(CommandShell shell, String name) {

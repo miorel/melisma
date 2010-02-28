@@ -13,7 +13,7 @@
  */
 package net.event;
 
-import event.EventListener;
+import com.googlecode.lawu.event.EventListener;
 
 public interface NetworkEventListener extends EventListener {
 	public void connected(ConnectedEvent event);

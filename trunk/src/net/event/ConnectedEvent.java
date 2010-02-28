@@ -15,7 +15,7 @@ package net.event;
 
 import java.net.SocketAddress;
 
-import event.EventListener;
+import com.googlecode.lawu.event.EventListener;
 
 public class ConnectedEvent extends AbstractNetworkEvent {
 	public ConnectedEvent(SocketAddress address) {

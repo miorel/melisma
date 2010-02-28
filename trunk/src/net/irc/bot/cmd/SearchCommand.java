@@ -16,13 +16,13 @@ package net.irc.bot.cmd;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
-import net.irc.Entity;
 import net.irc.IrcClient;
 import net.irc.bot.CommandShell;
 import net.irc.cmd.PrivmsgCommand;
 import util.LogManager;
 
-import com.googlecode.lawu.net.UrlShortener;
+import com.googlecode.lawu.net.irc.Entity;
+import com.googlecode.lawu.net.www.UrlShortener;
 
 public abstract class SearchCommand extends AsynchronousCommand {
 	public SearchCommand(CommandShell shell, String name) {
@@ -34,7 +34,7 @@ public abstract class SearchCommand extends AsynchronousCommand {
 	}
 
 	protected String transformUrl(String url) {
-		UrlShortener shortener = (UrlShortener) getObjectStore().getObject("bitly");
+		UrlShortener shortener = new com.googlecode.lawu.net.www.Isgd();
 		if(shortener != null)
 			try {
 				url = shortener.shorten(url);

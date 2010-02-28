@@ -13,16 +13,15 @@
  */
 package net.irc.cmd;
 
-import net.irc.Entity;
 import net.irc.IrcClient;
 import net.irc.event.AbstractIrcEvent;
 import net.irc.event.IrcEvent;
 import net.irc.event.IrcEventListener;
 
+import com.googlecode.lawu.event.EventListener;
+import com.googlecode.lawu.net.irc.Entity;
 import com.googlecode.lawu.util.Iterators;
 import com.googlecode.lawu.util.iterators.UniversalIterator;
-
-import event.EventListener;
 
 public class QuitCommand extends AbstractIrcCommand {
 	private final String message;

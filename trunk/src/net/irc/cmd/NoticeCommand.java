@@ -13,12 +13,13 @@
  */
 package net.irc.cmd;
 
-import event.EventListener;
-import net.irc.Entity;
 import net.irc.IrcClient;
 import net.irc.event.AbstractIrcEvent;
 import net.irc.event.IrcEvent;
 import net.irc.event.IrcEventListener;
+
+import com.googlecode.lawu.event.EventListener;
+import com.googlecode.lawu.net.irc.Entity;
 
 public class NoticeCommand extends IrcTargetMessageCommand {	
 	public NoticeCommand(Entity origin, String target, String message) {

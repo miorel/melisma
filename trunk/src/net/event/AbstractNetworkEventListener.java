@@ -13,7 +13,7 @@
  */
 package net.event;
 
-import event.EventListener;
+import com.googlecode.lawu.event.EventListener;
 
 public abstract class AbstractNetworkEventListener implements EventListener {
 	public void connected(ConnectedEvent event) {	

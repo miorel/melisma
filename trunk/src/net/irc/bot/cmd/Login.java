@@ -17,12 +17,13 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Random;
 
-import net.irc.Entity;
 import net.irc.IrcClient;
 import net.irc.bot.CommandShell;
 import net.irc.cmd.PrivmsgCommand;
 import util.LogManager;
 import util.ds.StringNode;
+
+import com.googlecode.lawu.net.irc.Entity;
 
 public class Login extends AbstractCommand {
 	private final StringNode auth;

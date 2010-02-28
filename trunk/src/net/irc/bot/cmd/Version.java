@@ -13,10 +13,11 @@
  */
 package net.irc.bot.cmd;
 
-import net.irc.Entity;
 import net.irc.IrcClient;
 import net.irc.bot.CommandShell;
 import net.irc.cmd.PrivmsgCommand;
+
+import com.googlecode.lawu.net.irc.Entity;
 
 public class Version extends AbstractCommand {
 	public Version(CommandShell shell) {

@@ -13,6 +13,8 @@
  */
 package event;
 
+import com.googlecode.lawu.event.EventListener;
+
 /**
  * Sample event interface implementation.
  * 

@@ -13,8 +13,9 @@
  */
 package net.irc.bot.cmd;
 
-import net.irc.Entity;
 import net.irc.IrcClient;
+
+import com.googlecode.lawu.net.irc.Entity;
 
 public interface Command {
 	public String getName();

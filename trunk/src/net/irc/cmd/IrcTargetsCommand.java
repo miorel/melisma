@@ -16,9 +16,8 @@ package net.irc.cmd;
 import java.util.ArrayList;
 import java.util.List;
 
-import net.irc.Entity;
-
 import com.googlecode.lawu.dp.Iterator;
+import com.googlecode.lawu.net.irc.Entity;
 import com.googlecode.lawu.util.Iterators;
 import com.googlecode.lawu.util.Strings;
 import com.googlecode.lawu.util.iterators.UniversalIterator;

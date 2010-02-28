@@ -13,15 +13,15 @@
  */
 package net.irc.bot.cmd;
 
-import net.irc.Entity;
 import net.irc.IrcClient;
 import net.irc.bot.CommandShell;
 import net.irc.cmd.PrivmsgCommand;
 import util.Dates;
 
 import com.googlecode.lawu.dp.Iterator;
-import com.googlecode.lawu.net.spoj.Submission;
-import com.googlecode.lawu.net.spoj.User;
+import com.googlecode.lawu.net.irc.Entity;
+import com.googlecode.lawu.net.www.spoj.Submission;
+import com.googlecode.lawu.net.www.spoj.User;
 
 public class Spoj extends AsynchronousCommand {	
 	public Spoj(CommandShell shell) {
@@ -48,7 +48,11 @@ public class Spoj extends AsynchronousCommand {
 					client.send(new PrivmsgCommand(target, String.format("Hmm, it doesn't look like %s made any submissions. Does this user even exist?", username)));
 				else {
 					Submission s = submits.current();
-					client.send(new PrivmsgCommand(target, String.format("%s - %s submitted %s in %s and received %s.", Dates.time(s.getDate()), username, s.getProblem(), s.getLanguage().getRealName(), s.getResult())));
+					String msg = String.format("%s - %s submitted %s in %s", Dates.time(s.getDate()), username, s.getProblem(), s.getLanguage().getRealName());
+					switch(s.getResult()) {
+					
+					}
+					client.send(new PrivmsgCommand(target, msg));
 				}
 			}
 			catch(Exception e) {

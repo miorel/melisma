@@ -20,7 +20,7 @@ import java.util.Properties;
 import util.LogManager;
 import util.ResourceLoader;
 
-import com.googlecode.lawu.net.Bitly;
+import com.googlecode.lawu.net.www.Bitly;
 
 public class ObjectStore {
 	private final Map<String,Object> objectStore = new HashMap<String,Object>();

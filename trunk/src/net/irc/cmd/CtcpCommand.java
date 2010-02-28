@@ -21,14 +21,15 @@ import java.util.Properties;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import net.irc.Entity;
 import net.irc.IrcClient;
 import net.irc.event.AbstractIrcEvent;
 import net.irc.event.IrcEvent;
 import net.irc.event.IrcEventListener;
 import util.LogManager;
 import util.ResourceLoader;
-import event.EventListener;
+
+import com.googlecode.lawu.event.EventListener;
+import com.googlecode.lawu.net.irc.Entity;
 
 public class CtcpCommand extends PrivmsgCommand {
 	public static final Pattern CTCP = Pattern.compile("\1([a-z]+)\\s*(.*)\1", Pattern.DOTALL | Pattern.CASE_INSENSITIVE);

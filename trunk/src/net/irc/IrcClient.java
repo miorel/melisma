@@ -48,6 +48,7 @@ import net.irc.event.IrcEventListener;
 import util.LogManager;
 import util.ResourceLoader;
 
+import com.googlecode.lawu.net.irc.Entity;
 import com.googlecode.lawu.util.Iterators;
 import com.googlecode.lawu.util.iterators.UniversalIterator;
 
@@ -219,7 +220,7 @@ public class IrcClient extends LineOrientedClient<IrcConfig> {
 				paramStack.push(m.group());
 			if(!paramStack.isEmpty() && paramStack.peek().startsWith(":"))
 				paramStack.push(paramStack.pop().substring(1));
-			Entity originObj = origin == null ? null : new Entity(getAddress(), origin);
+			Entity originObj = origin == null ? null : Entity.forInfo(origin, getAddress());
 			String[] param = paramStack.toArray(new String[paramStack.size()]);
 			if(command.matches("\\d{3}"))
 				processCommand(originObj, Integer.parseInt(command), param);

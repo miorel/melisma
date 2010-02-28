@@ -165,6 +165,6 @@ public class Brain {
 	}
 	
 	public void invokeAsync(Runnable runnable) {
-		worker.queueTask(runnable);
+		worker.enqueue(runnable);
 	}
 }
