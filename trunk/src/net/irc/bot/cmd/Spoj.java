@@ -49,9 +49,31 @@ public class Spoj extends AsynchronousCommand {
 				else {
 					Submission s = submits.current();
 					String msg = String.format("%s - %s submitted %s in %s", Dates.time(s.getDate()), username, s.getProblem(), s.getLanguage().getRealName());
-					switch(s.getResult()) {
-					
+					if(!s.isBinary() && s.isAccepted()) {
+						msg += " and scored ";
+						double score = s.getScore();
+						if(score == (double) Math.round(score))
+							msg += Math.round(score);
+						else
+							msg += score;
+						msg += ".";
 					}
+					else
+						switch(s.getResult()) {
+						case AC:
+						case TLE:
+						case WA:
+							msg += " and received " + s.getResult().getTitle() + ".";
+							break;
+						case CE:
+						case RE:
+						case SE:
+							msg += " and received a " + s.getResult().getTitle() + ".";
+							break;
+						case PENDING:
+							msg += ". The result is pending.";
+							break;
+						}
 					client.send(new PrivmsgCommand(target, msg));
 				}
 			}

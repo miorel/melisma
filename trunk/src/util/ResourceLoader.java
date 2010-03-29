@@ -28,6 +28,8 @@ import javax.xml.parsers.ParserConfigurationException;
 import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
 
+import com.googlecode.lawu.util.Streams;
+
 public class ResourceLoader {
 	private static final ResourceLoader resourceLoader = new ResourceLoader();
 	private static final ClassLoader classLoader = ResourceLoader.class.getClassLoader();
@@ -67,7 +69,7 @@ public class ResourceLoader {
 			ret = classLoader.getResourceAsStream(path);
 		if(create && !file.exists()) {
 			try {
-				Files.copy(ret, file);
+				Streams.copy(ret, file);
 			}
 			catch(Exception e) {}
 			ret = getStream(path, allowOverride, false);
